@@ -1,0 +1,69 @@
+
+/*       top buttons       */
+
+button {
+    --border-left-radius: var(--btn-corner);
+    --border-right-radius: var(--btn-corner);
+}
+div.btn-toolbar svg {
+    --icon-size: 58% !important;
+}
+.btn {
+    /* font-size: 0.75rem !important; */
+
+    /* --icon-size: 58% !important; */
+
+    background: var(--btn-bg-color);
+    height: var(--editor-btn-height) !important; /* was 24px */
+    margin-left: 0px !important;
+    margin-left: 1px !important;
+    margin-right: 1px !important;
+}
+svg.icn-dmns {
+    top: calc(((100% - var(--icon-size)) / 2) - 1%) !important;
+    bottom: calc(((100% - var(--icon-size)) / 2) + 1%) !important;
+}
+
+div#notetype button {
+    padding-left: 6px !important;  /* was 8px */
+    padding-right: 6px !important;  /* was 8px */
+}
+
+.dropdown-menu {
+    border: none;
+    box-shadow: var(--btn-shadow) !important;
+}
+button.dropdown-item {
+    box-shadow: none !important;
+}
+
+nav {
+    border-bottom: var(--border-sep-btns-from-fields) !important;
+}
+
+
+/*       FIELD       */
+
+
+div.editor-field {
+    /* remove line around edit fields */
+    border: none !important;
+}
+div.editor-field span.label-name {
+    font-size: 13px;
+}
+div.editor-field > div.label-container {
+    /* remove bottom dotted line */
+    border: none !important;
+
+    /* remove background color */
+    background-color: var(--window-bg) !important;
+}
+/* div.editor-field > div.label-container, */
+div.editor-field > div.editing-area {
+    border: 0.5px solid hsl(0, 0%, 88%);
+    border-radius: 3px;
+
+    /* offset-x | offset-y | blur-radius | spread-radius | color */
+    box-shadow: inset 0px 1px 6px -2px rgba(0, 0, 0, 0.2);
+}

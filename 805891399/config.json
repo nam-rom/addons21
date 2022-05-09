@@ -1,0 +1,7 @@
+{
+    "TinyMCE5 - enable": true,  
+    "TinyMCE5 - shortcut to open dialog": "Ctrl+0",
+    "font": "Times New Roman",
+    "fontSize": "20",
+    "show background color buttons": false
+}

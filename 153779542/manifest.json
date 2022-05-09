@@ -1,0 +1,12 @@
+{
+    "name": "Deck Browser CSS",
+    "package": "deckbrowser_css",
+    "ankiweb_id": "153779542",
+    "author": "Simon Kelly",
+    "version": "v1.0.0",
+    "homepage": "https://github.com/simonkellly/deckbrowser-css",
+    "conflicts": [
+        "153779542"
+    ],
+    "mod": 1640074449
+}

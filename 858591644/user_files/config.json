@@ -1,0 +1,43 @@
+{
+    "appendAudio": true,
+    "skipExistingBulkAdd": true,
+    "playAudioAfterSingleAddAutomaticSelection": true,
+    "replaceCharacters": [
+        "\u30fb",
+        "~",
+        "\u3002",
+        "."
+    ],
+    "noteTypeSpecific": [
+        {
+            "id": 1622170281843,
+            "searchField": "Word",
+            "audioField": "Audio 1"
+        }
+    ],
+    "deckSpecific": [
+        {
+            "id": 1622972155167,
+            "language": "en"
+        },
+        {
+            "id": 1628167927915,
+            "language": "en"
+        },
+        {
+            "id": 1630634866606,
+            "language": "en"
+        },
+        {
+            "id": 1622296876584,
+            "language": "en"
+        },
+        {
+            "id": 1622296876583,
+            "language": "en"
+        }
+    ],
+    "audioFieldAddMode": "append",
+    "configVersion": "1.0.4",
+    "skipOggFallback": false
+}

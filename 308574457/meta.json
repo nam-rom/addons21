@@ -1,0 +1,1 @@
+{"name": "Anki-redesign", "conflicts": ["308574457", "688199788"], "mod": 1650314982, "min_point_version": 20, "max_point_version": 50, "branch_index": 0, "config": {"addon_more_overview_stats": "True", "font": "Comic Sans MS", "font_size": "12", "theme": "Catppuccin"}, "disabled": false, "update_enabled": true}

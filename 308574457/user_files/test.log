@@ -1,0 +1,143 @@
+20220413-00:50:37 DEBUG    [__init__.py:113] <aqt.deckbrowser.DeckBrowser object at 0x000002E98B2441F0>
+20220413-00:50:37 DEBUG    [__init__.py:113] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x000002E993501430>
+20220413-00:57:44 DEBUG    [logger.py:17] Initialized anki
+20220413-00:57:44 DEBUG    [__init__.py:55] {'BottomBar': '/_addons/anki-redesign/files/BottomBar.css', 'CardLayout': '/_addons/anki-redesign/files/CardLayout.css', 'DeckBrowser': '/_addons/anki-redesign/files/DeckBrowser.css', 'Editor': '/_addons/anki-redesign/files/Editor.css', 'global': '/_addons/anki-redesign/files/global.css', 'legacy': '/_addons/anki-redesign/files/legacy.css', 'Overview': '/_addons/anki-redesign/files/Overview.css', 'QAbout': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAbout.css', 'QAddCards': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAddCards.css', 'QAddonsDialog': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAddonsDialog.css', 'QBrowser': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QBrowser.css', 'QFilteredDeckConfigDialog': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QFilteredDeckConfigDialog.css', 'QEditCurrent': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QEditCurrent.css', 'QNewDeckStats': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QNewDeckStats.css', 'QPreferences': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QPreferences.css', 'Reviewer': '/_addons/anki-redesign/files/Reviewer.css', 'ReviewerBottomBar': '/_addons/anki-redesign/files/ReviewerBottomBar.css', 'TopToolbar': '/_addons/anki-redesign/files/TopToolbar.css'}
+20220413-00:57:44 DEBUG    [__init__.py:56] {'Anki': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\themes\\Anki.json', 'Catppuccin': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\themes\\Catppuccin.json'}
+20220413-00:57:44 DEBUG    [__init__.py:84] <PyInstallerWinDLL 'dwmapi', handle 7ffd461b0000 at 0x244faed26a0>
+20220413-00:57:45 DEBUG    [connectionpool.py:428] https://ankiweb.net:443 "POST /update/desktop HTTP/1.1" 200 61
+20220413-00:57:52 DEBUG    [__init__.py:113] <aqt.deckbrowser.DeckBrowser object at 0x00000244FAEA27F0>
+20220413-00:57:52 DEBUG    [__init__.py:113] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x00000244FD3CE550>
+20220413-00:57:52 DEBUG    [__init__.py:113] <aqt.toolbar.TopToolbar object at 0x00000244FD3CE6A0>
+20220413-01:00:16 DEBUG    [logger.py:17] Initialized anki
+20220413-01:00:16 DEBUG    [__init__.py:55] {'BottomBar': '/_addons/anki-redesign/files/BottomBar.css', 'CardLayout': '/_addons/anki-redesign/files/CardLayout.css', 'DeckBrowser': '/_addons/anki-redesign/files/DeckBrowser.css', 'Editor': '/_addons/anki-redesign/files/Editor.css', 'global': '/_addons/anki-redesign/files/global.css', 'legacy': '/_addons/anki-redesign/files/legacy.css', 'Overview': '/_addons/anki-redesign/files/Overview.css', 'QAbout': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAbout.css', 'QAddCards': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAddCards.css', 'QAddonsDialog': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAddonsDialog.css', 'QBrowser': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QBrowser.css', 'QFilteredDeckConfigDialog': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QFilteredDeckConfigDialog.css', 'QEditCurrent': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QEditCurrent.css', 'QNewDeckStats': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QNewDeckStats.css', 'QPreferences': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QPreferences.css', 'Reviewer': '/_addons/anki-redesign/files/Reviewer.css', 'ReviewerBottomBar': '/_addons/anki-redesign/files/ReviewerBottomBar.css', 'TopToolbar': '/_addons/anki-redesign/files/TopToolbar.css'}
+20220413-01:00:16 DEBUG    [__init__.py:56] {'Anki': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\themes\\Anki.json', 'Catppuccin': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\themes\\Catppuccin.json'}
+20220413-01:00:16 DEBUG    [__init__.py:84] <PyInstallerWinDLL 'dwmapi', handle 7ffd461b0000 at 0x162686d5250>
+20220413-01:00:16 DEBUG    [connectionpool.py:428] https://ankiweb.net:443 "POST /update/desktop HTTP/1.1" 200 61
+20220413-01:00:18 DEBUG    [__init__.py:113] <aqt.deckbrowser.DeckBrowser object at 0x0000016264F327F0>
+20220413-01:00:18 DEBUG    [__init__.py:113] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x000001626861D3A0>
+20220413-01:00:18 DEBUG    [__init__.py:113] <aqt.toolbar.TopToolbar object at 0x0000016268616F10>
+20220413-01:00:59 DEBUG    [__init__.py:113] <aqt.overview.Overview object at 0x0000016264F3A4C0>
+20220413-01:00:59 DEBUG    [__init__.py:113] <aqt.overview.OverviewBottomBar object at 0x000001626880F220>
+20220413-01:01:01 DEBUG    [__init__.py:113] <aqt.deckbrowser.DeckBrowser object at 0x0000016264F327F0>
+20220413-01:01:01 DEBUG    [__init__.py:113] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x0000016268801DF0>
+20220413-01:01:01 DEBUG    [__init__.py:113] <aqt.toolbar.TopToolbar object at 0x0000016268801F10>
+20220413-01:01:02 DEBUG    [__init__.py:113] <aqt.overview.Overview object at 0x0000016264F3A4C0>
+20220413-01:01:02 DEBUG    [__init__.py:113] <aqt.overview.OverviewBottomBar object at 0x000001626872A970>
+20220413-01:01:07 DEBUG    [__init__.py:113] <aqt.deckbrowser.DeckBrowser object at 0x0000016264F327F0>
+20220413-01:01:07 DEBUG    [__init__.py:113] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x0000016268732A00>
+20220413-01:01:07 DEBUG    [__init__.py:113] <aqt.toolbar.TopToolbar object at 0x0000016268732940>
+20220413-01:01:18 DEBUG    [__init__.py:232] <aqt.stats.DeckStats object at 0x000001626874CDC0>
+20220413-01:01:18 DEBUG    [__init__.py:113] <aqt.stats.DeckStats object at 0x000001626874CDC0>
+20220413-01:10:16 DEBUG    [__init__.py:113] <aqt.deckbrowser.DeckBrowser object at 0x0000016264F327F0>
+20220413-01:10:16 DEBUG    [__init__.py:113] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x0000016268809B20>
+20220413-01:16:54 DEBUG    [__init__.py:113] <aqt.overview.Overview object at 0x0000016264F3A4C0>
+20220413-01:16:54 DEBUG    [__init__.py:113] <aqt.overview.OverviewBottomBar object at 0x00000162688094F0>
+20220413-01:16:55 DEBUG    [__init__.py:113] <aqt.reviewer.Reviewer object at 0x0000016264F3A6D0>
+20220413-01:16:55 DEBUG    [__init__.py:113] <aqt.reviewer.ReviewerBottomBar object at 0x00000162688094F0>
+20220413-01:17:05 DEBUG    [__init__.py:113] <aqt.deckbrowser.DeckBrowser object at 0x0000016264F327F0>
+20220413-01:17:05 DEBUG    [__init__.py:113] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x000001626873F4C0>
+20220413-01:17:05 DEBUG    [__init__.py:113] <aqt.toolbar.TopToolbar object at 0x0000016268750670>
+20220413-01:17:15 DEBUG    [__init__.py:113] <aqt.overview.Overview object at 0x0000016264F3A4C0>
+20220413-01:17:15 DEBUG    [__init__.py:113] <aqt.overview.OverviewBottomBar object at 0x000001626873F5B0>
+20220413-01:17:16 DEBUG    [__init__.py:113] <aqt.deckbrowser.DeckBrowser object at 0x0000016264F327F0>
+20220413-01:17:16 DEBUG    [__init__.py:113] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x0000016268771130>
+20220413-01:17:16 DEBUG    [__init__.py:113] <aqt.toolbar.TopToolbar object at 0x000001626873F5B0>
+20220413-01:17:19 DEBUG    [__init__.py:113] <aqt.overview.Overview object at 0x0000016264F3A4C0>
+20220413-01:17:19 DEBUG    [__init__.py:113] <aqt.overview.OverviewBottomBar object at 0x0000016268779A60>
+20220413-01:17:20 DEBUG    [__init__.py:113] <aqt.deckbrowser.DeckBrowser object at 0x0000016264F327F0>
+20220413-01:17:20 DEBUG    [__init__.py:113] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x000001626876C970>
+20220413-01:17:20 DEBUG    [__init__.py:113] <aqt.toolbar.TopToolbar object at 0x000001626877AD90>
+20220413-01:19:19 DEBUG    [logger.py:17] Initialized anki
+20220413-01:19:19 DEBUG    [__init__.py:54] {'BottomBar': '/_addons/anki-redesign/files/BottomBar.css', 'CardLayout': '/_addons/anki-redesign/files/CardLayout.css', 'DeckBrowser': '/_addons/anki-redesign/files/DeckBrowser.css', 'Editor': '/_addons/anki-redesign/files/Editor.css', 'global': '/_addons/anki-redesign/files/global.css', 'legacy': '/_addons/anki-redesign/files/legacy.css', 'Overview': '/_addons/anki-redesign/files/Overview.css', 'QAbout': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAbout.css', 'QAddCards': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAddCards.css', 'QAddonsDialog': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAddonsDialog.css', 'QBrowser': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QBrowser.css', 'QFilteredDeckConfigDialog': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QFilteredDeckConfigDialog.css', 'QEditCurrent': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QEditCurrent.css', 'QNewDeckStats': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QNewDeckStats.css', 'QPreferences': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QPreferences.css', 'Reviewer': '/_addons/anki-redesign/files/Reviewer.css', 'ReviewerBottomBar': '/_addons/anki-redesign/files/ReviewerBottomBar.css', 'TopToolbar': '/_addons/anki-redesign/files/TopToolbar.css'}
+20220413-01:19:19 DEBUG    [__init__.py:55] {'Anki': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\themes\\Anki.json', 'Catppuccin': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\themes\\Catppuccin.json'}
+20220413-01:19:20 DEBUG    [__init__.py:83] <PyInstallerWinDLL 'dwmapi', handle 7ffd461b0000 at 0x239d9be9c40>
+20220413-01:19:22 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x00000239D89932E0>
+20220413-01:19:22 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x00000239D9C754F0>
+20220413-01:19:22 DEBUG    [__init__.py:112] <aqt.toolbar.TopToolbar object at 0x00000239D9C69730>
+20220413-01:19:24 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x00000239D89932E0>
+20220413-01:19:24 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x00000239D9CB23A0>
+20220413-01:19:24 DEBUG    [__init__.py:112] <aqt.toolbar.TopToolbar object at 0x00000239D9C75190>
+20220413-01:19:24 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x00000239D89932E0>
+20220413-01:19:24 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x00000239D9CB2E50>
+20220413-01:19:24 DEBUG    [__init__.py:112] <aqt.toolbar.TopToolbar object at 0x00000239D9CB2E20>
+20220413-01:19:25 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x00000239D89932E0>
+20220413-01:19:25 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x00000239DC187250>
+20220413-01:19:25 DEBUG    [__init__.py:112] <aqt.toolbar.TopToolbar object at 0x00000239DC188FD0>
+20220413-01:19:25 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x00000239D89932E0>
+20220413-01:19:25 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x00000239DC188F70>
+20220413-01:19:25 DEBUG    [__init__.py:112] <aqt.toolbar.TopToolbar object at 0x00000239D9CAFF10>
+20220413-01:19:27 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x00000239D89932E0>
+20220413-01:19:27 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x00000239DC194D30>
+20220413-01:19:27 DEBUG    [__init__.py:112] <aqt.toolbar.TopToolbar object at 0x00000239DC188F70>
+20220413-01:19:28 DEBUG    [__init__.py:231] <aqt.addcards.AddCards object at 0x00000239DC19BCA0>
+20220413-01:19:28 DEBUG    [__init__.py:112] <aqt.editor.Editor object at 0x00000239DC19D6D0>
+20220413-01:19:55 DEBUG    [__init__.py:112] <aqt.overview.Overview object at 0x00000239D899C040>
+20220413-01:19:55 DEBUG    [__init__.py:112] <aqt.overview.OverviewBottomBar object at 0x00000239DC187CA0>
+20220413-01:19:59 DEBUG    [__init__.py:112] <aqt.reviewer.Reviewer object at 0x00000239D899C1C0>
+20220413-01:19:59 DEBUG    [__init__.py:112] <aqt.reviewer.ReviewerBottomBar object at 0x00000239DC1CD2E0>
+20220413-01:20:01 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x00000239D89932E0>
+20220413-01:20:01 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x00000239DC1E7DC0>
+20220413-01:20:01 DEBUG    [__init__.py:112] <aqt.toolbar.TopToolbar object at 0x00000239DC1CD0A0>
+20220413-01:20:09 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x00000239D89932E0>
+20220413-01:20:09 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x00000239DC159640>
+20220413-01:20:09 DEBUG    [__init__.py:112] <aqt.toolbar.TopToolbar object at 0x00000239DC1F1850>
+20220413-01:23:48 DEBUG    [logger.py:17] Initialized anki
+20220413-01:23:48 DEBUG    [__init__.py:54] {'BottomBar': '/_addons/anki-redesign/files/BottomBar.css', 'CardLayout': '/_addons/anki-redesign/files/CardLayout.css', 'DeckBrowser': '/_addons/anki-redesign/files/DeckBrowser.css', 'Editor': '/_addons/anki-redesign/files/Editor.css', 'global': '/_addons/anki-redesign/files/global.css', 'legacy': '/_addons/anki-redesign/files/legacy.css', 'Overview': '/_addons/anki-redesign/files/Overview.css', 'QAbout': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAbout.css', 'QAddCards': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAddCards.css', 'QAddonsDialog': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAddonsDialog.css', 'QBrowser': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QBrowser.css', 'QFilteredDeckConfigDialog': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QFilteredDeckConfigDialog.css', 'QEditCurrent': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QEditCurrent.css', 'QNewDeckStats': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QNewDeckStats.css', 'QPreferences': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QPreferences.css', 'Reviewer': '/_addons/anki-redesign/files/Reviewer.css', 'ReviewerBottomBar': '/_addons/anki-redesign/files/ReviewerBottomBar.css', 'TopToolbar': '/_addons/anki-redesign/files/TopToolbar.css'}
+20220413-01:23:48 DEBUG    [__init__.py:55] {'Anki': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\themes\\Anki.json', 'Catppuccin': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\themes\\Catppuccin.json'}
+20220413-01:23:48 DEBUG    [__init__.py:83] <PyInstallerWinDLL 'dwmapi', handle 7ffd461b0000 at 0x1f297101b50>
+20220413-01:23:48 DEBUG    [__init__.py:112] <aqt.toolbar.TopToolbar object at 0x000001F294A30760>
+20220413-01:23:48 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x000001F294A1EFA0>
+20220413-01:23:48 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x000001F29971BC70>
+20220413-01:23:48 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x000001F294A1EFA0>
+20220413-01:23:48 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x000001F29971B250>
+20220413-01:33:47 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x000001F294A1EFA0>
+20220413-01:33:47 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x000001F299781280>
+20220413-01:35:58 DEBUG    [__init__.py:181] AddonsDialog
+20220413-01:36:33 DEBUG    [logger.py:17] Initialized anki
+20220413-01:36:33 DEBUG    [__init__.py:54] {'BottomBar': '/_addons/anki-redesign/files/BottomBar.css', 'CardLayout': '/_addons/anki-redesign/files/CardLayout.css', 'DeckBrowser': '/_addons/anki-redesign/files/DeckBrowser.css', 'Editor': '/_addons/anki-redesign/files/Editor.css', 'global': '/_addons/anki-redesign/files/global.css', 'legacy': '/_addons/anki-redesign/files/legacy.css', 'Overview': '/_addons/anki-redesign/files/Overview.css', 'QAbout': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAbout.css', 'QAddCards': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAddCards.css', 'QAddonsDialog': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAddonsDialog.css', 'QBrowser': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QBrowser.css', 'QFilteredDeckConfigDialog': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QFilteredDeckConfigDialog.css', 'QEditCurrent': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QEditCurrent.css', 'QNewDeckStats': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QNewDeckStats.css', 'QPreferences': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QPreferences.css', 'Reviewer': '/_addons/anki-redesign/files/Reviewer.css', 'ReviewerBottomBar': '/_addons/anki-redesign/files/ReviewerBottomBar.css', 'TopToolbar': '/_addons/anki-redesign/files/TopToolbar.css'}
+20220413-01:36:33 DEBUG    [__init__.py:55] {'Anki': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\themes\\Anki.json', 'Catppuccin': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\themes\\Catppuccin.json'}
+20220413-01:36:33 DEBUG    [__init__.py:83] <PyInstallerWinDLL 'dwmapi', handle 7ffd461b0000 at 0x1da91966f70>
+20220413-01:36:33 DEBUG    [__init__.py:112] <aqt.toolbar.TopToolbar object at 0x000001DA91963340>
+20220413-01:36:33 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x000001DA8F1932B0>
+20220413-01:36:33 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x000001DA93E048E0>
+20220413-01:36:33 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x000001DA8F1932B0>
+20220413-01:36:33 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x000001DA93E26250>
+20220413-01:36:39 DEBUG    [__init__.py:181] AddonsDialog
+20220414-00:15:06 DEBUG    [logger.py:17] Initialized anki
+20220414-00:15:06 DEBUG    [__init__.py:54] {'BottomBar': '/_addons/anki-redesign/files/BottomBar.css', 'CardLayout': '/_addons/anki-redesign/files/CardLayout.css', 'DeckBrowser': '/_addons/anki-redesign/files/DeckBrowser.css', 'Editor': '/_addons/anki-redesign/files/Editor.css', 'global': '/_addons/anki-redesign/files/global.css', 'legacy': '/_addons/anki-redesign/files/legacy.css', 'Overview': '/_addons/anki-redesign/files/Overview.css', 'QAbout': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAbout.css', 'QAddCards': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAddCards.css', 'QAddonsDialog': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAddonsDialog.css', 'QBrowser': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QBrowser.css', 'QFilteredDeckConfigDialog': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QFilteredDeckConfigDialog.css', 'QEditCurrent': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QEditCurrent.css', 'QNewDeckStats': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QNewDeckStats.css', 'QPreferences': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QPreferences.css', 'Reviewer': '/_addons/anki-redesign/files/Reviewer.css', 'ReviewerBottomBar': '/_addons/anki-redesign/files/ReviewerBottomBar.css', 'TopToolbar': '/_addons/anki-redesign/files/TopToolbar.css'}
+20220414-00:15:06 DEBUG    [__init__.py:55] {'Anki': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\themes\\Anki.json', 'Catppuccin': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\themes\\Catppuccin.json'}
+20220414-00:15:06 DEBUG    [__init__.py:83] <PyInstallerWinDLL 'dwmapi', handle 7ffd461b0000 at 0x141649d5ac0>
+20220414-00:15:06 DEBUG    [__init__.py:112] <aqt.toolbar.TopToolbar object at 0x0000014166FB14F0>
+20220414-00:15:06 DEBUG    [connectionpool.py:971] Starting new HTTPS connection (1): ankiweb.net:443
+20220414-00:15:06 DEBUG    [connectionpool.py:452] https://ankiweb.net:443 "GET /shared/updates/1151815987,1215991469,1556734708,181103283,1829090218,2494384865,308574457,31746032,46611790,498789867,688199788,723520343,738807903?v=3 HTTP/1.1" 200 None
+20220414-00:15:06 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x000001415ED11AC0>
+20220414-00:15:06 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x0000014166FB12B0>
+20220414-00:15:06 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x000001415ED11AC0>
+20220414-00:15:06 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x0000014166FB15B0>
+20220414-00:15:45 DEBUG    [connectionpool.py:452] https://ankiweb.net:443 "GET /shared/download/308574457?v=2.1&p=49 HTTP/1.1" 302 283
+20220414-00:15:45 DEBUG    [connectionpool.py:971] Starting new HTTPS connection (1): dl2.ankiweb.net:443
+20220414-00:15:46 DEBUG    [connectionpool.py:452] https://dl2.ankiweb.net:443 "GET /shared/downloadAddon2/308574457?t=1649808903&v=2.1&minpt=20&maxpt=49&bidx=0 HTTP/1.1" 200 21786
+20220414-00:15:58 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x000001415ED11AC0>
+20220414-00:15:58 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x0000014167043370>
+20220414-00:17:09 DEBUG    [logger.py:17] Initialized anki
+20220414-00:17:09 DEBUG    [__init__.py:54] {'BottomBar': '/_addons/anki-redesign/files/BottomBar.css', 'CardLayout': '/_addons/anki-redesign/files/CardLayout.css', 'DeckBrowser': '/_addons/anki-redesign/files/DeckBrowser.css', 'Editor': '/_addons/anki-redesign/files/Editor.css', 'global': '/_addons/anki-redesign/files/global.css', 'legacy': '/_addons/anki-redesign/files/legacy.css', 'Overview': '/_addons/anki-redesign/files/Overview.css', 'QAbout': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAbout.css', 'QAddCards': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAddCards.css', 'QAddonsDialog': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAddonsDialog.css', 'QBrowser': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QBrowser.css', 'QFilteredDeckConfigDialog': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QFilteredDeckConfigDialog.css', 'QEditCurrent': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QEditCurrent.css', 'QNewDeckStats': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QNewDeckStats.css', 'QPreferences': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QPreferences.css', 'Reviewer': '/_addons/anki-redesign/files/Reviewer.css', 'ReviewerBottomBar': '/_addons/anki-redesign/files/ReviewerBottomBar.css', 'TopToolbar': '/_addons/anki-redesign/files/TopToolbar.css'}
+20220414-00:17:09 DEBUG    [__init__.py:55] {'Anki': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\themes\\Anki.json', 'Catppuccin': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\themes\\Catppuccin.json'}
+20220414-00:17:09 DEBUG    [__init__.py:83] <PyInstallerWinDLL 'dwmapi', handle 7ffd461b0000 at 0x20b18313130>
+20220414-00:17:09 DEBUG    [connectionpool.py:428] https://ankiweb.net:443 "POST /update/desktop HTTP/1.1" 200 61
+20220414-00:17:11 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x0000020B15E14490>
+20220414-00:17:11 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x0000020B1836FF70>
+20220414-00:17:11 DEBUG    [__init__.py:112] <aqt.toolbar.TopToolbar object at 0x0000020B1836FEB0>
+20220414-00:18:05 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x0000020B15E14490>
+20220414-00:18:05 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x0000020B142D15E0>
+20220414-00:18:05 DEBUG    [__init__.py:112] <aqt.toolbar.TopToolbar object at 0x0000020B1836FF70>
+20220414-00:19:08 DEBUG    [logger.py:17] Initialized anki
+20220414-00:19:08 DEBUG    [__init__.py:54] {'BottomBar': '/_addons/anki-redesign/files/BottomBar.css', 'CardLayout': '/_addons/anki-redesign/files/CardLayout.css', 'DeckBrowser': '/_addons/anki-redesign/files/DeckBrowser.css', 'Editor': '/_addons/anki-redesign/files/Editor.css', 'global': '/_addons/anki-redesign/files/global.css', 'legacy': '/_addons/anki-redesign/files/legacy.css', 'Overview': '/_addons/anki-redesign/files/Overview.css', 'QAbout': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAbout.css', 'QAddCards': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAddCards.css', 'QAddonsDialog': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QAddonsDialog.css', 'QBrowser': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QBrowser.css', 'QFilteredDeckConfigDialog': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QFilteredDeckConfigDialog.css', 'QEditCurrent': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QEditCurrent.css', 'QNewDeckStats': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QNewDeckStats.css', 'QPreferences': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\files\\QPreferences.css', 'Reviewer': '/_addons/anki-redesign/files/Reviewer.css', 'ReviewerBottomBar': '/_addons/anki-redesign/files/ReviewerBottomBar.css', 'TopToolbar': '/_addons/anki-redesign/files/TopToolbar.css'}
+20220414-00:19:08 DEBUG    [__init__.py:55] {'Anki': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\themes\\Anki.json', 'Catppuccin': 'C:\\Users\\phucj\\AppData\\Roaming\\Anki2\\addons21\\anki-redesign\\utils\\..\\themes\\Catppuccin.json'}
+20220414-00:19:08 DEBUG    [__init__.py:83] <PyInstallerWinDLL 'dwmapi', handle 7ffd461b0000 at 0x1e55386c4c0>
+20220414-00:19:08 DEBUG    [connectionpool.py:428] https://ankiweb.net:443 "POST /update/desktop HTTP/1.1" 200 61
+20220414-00:19:19 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x000001E553833670>
+20220414-00:19:19 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x000001E556FB7A90>
+20220414-00:19:19 DEBUG    [__init__.py:112] <aqt.toolbar.TopToolbar object at 0x000001E556FB7BE0>
+20220414-00:19:24 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowser object at 0x000001E553833670>
+20220414-00:19:24 DEBUG    [__init__.py:112] <aqt.deckbrowser.DeckBrowserBottomBar object at 0x000001E557056EE0>
+20220414-00:19:24 DEBUG    [__init__.py:112] <aqt.toolbar.TopToolbar object at 0x000001E556FB7A90>
