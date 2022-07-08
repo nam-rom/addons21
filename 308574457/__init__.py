@@ -45,6 +45,7 @@ from .config import config, write_config, get_config
 ## Addon compatibility fixes
 # More Overview Stats 2.1 addon compatibility fix
 addon_more_overview_stats_fix = config['addon_more_overview_stats']
+addon_advanced_review_bottom_bar = config['addon_advanced_review_bottom_bar']
 
 ## Customization
 theme = config['theme']
@@ -133,12 +134,16 @@ def on_webview_will_set_content(web_content: WebContent, context: Optional[Any])
     elif isinstance(context, Reviewer):
         web_content.css.append(css_files_dir['Reviewer'])
     elif isinstance(context, ReviewerBottomBar):
-        web_content.css.append(css_files_dir['BottomBar'])
+        if addon_advanced_review_bottom_bar:
+            #web_content.head += "<style>td.stat[align='left']:nth-of-type(2) {position: absolute; z-index: 1;}</style>"
+            web_content.body += "<script>const center = document.getElementById('outer');center.classList.add('arbb');</script>"
+        else:
+            web_content.css.append(css_files_dir['BottomBar'])
         web_content.css.append(css_files_dir['ReviewerBottomBar'])
         # Button padding bottom
         web_content.body += "<div style='height: 9px; opacity: 0; pointer-events: none;'></div>"
         web_content.body += "<div id='padFix' style='height: 30px; opacity: 0; pointer-events: none;'><script>const e = document.getElementById('padFix');e.parentElement.removeChild(e);</script></div>"
-        mw.bottomWeb.adjustHeightToFit();
+        mw.bottomWeb.adjustHeightToFit()
     # CardLayout
     elif context_name_includes(context, "aqt.clayout.CardLayout"):
         web_content.css.append(css_files_dir['CardLayout'])
@@ -156,6 +161,14 @@ def redraw_toolbar() -> None:
         var br = document.createElement("br");
         document.body.appendChild(br);
     """)
+
+    if 'Qt6' in QPalette.ColorRole.__module__:
+        mw.toolbar.web.eval("""
+            var div = document.createElement("div");
+            div.style.width = "5px";
+            div.style.height = "10px";
+            document.body.appendChild(div);
+        """)
     # Auto adjust the height, then redraw the toolbar
     mw.toolbar.web.adjustHeightToFit()
     mw.toolbar.redraw()
@@ -164,17 +177,22 @@ def redraw_toolbar_legacy(links: List[str], _: Toolbar) -> None:
     # Utilizing the link hook, we inject <br/> tag through javascript
     inject_br = """
         <script>
+            while (document.body.querySelectorAll("br").length > 1)
+                document.body.querySelectorAll("br")[0].remove();
             var br = document.createElement("br");
             document.body.appendChild(br);
         </script>
     """
     mw.toolbar.web.setFixedHeight(60)
     links.append(inject_br)
+    mw.toolbar.web.adjustHeightToFit()
 
 if attribute_exists(gui_hooks, "main_window_did_init"):
-    gui_hooks.main_window_did_init.append(redraw_toolbar)
+    pass
+    #gui_hooks.main_window_did_init.append(redraw_toolbar)
 elif attribute_exists(gui_hooks, "top_toolbar_did_init_links"):
     gui_hooks.top_toolbar_did_init_links.append(redraw_toolbar_legacy)
+    pass
 
 # Dialog window styling
 def on_dialog_manager_did_open_dialog(dialog_manager: DialogManager, dialog_name: str, dialog_instance: QWidget) -> None:
@@ -383,11 +401,16 @@ class ConfigDialog(QDialog):
 
         self.settings_layout.addRow(QLabel())
 
+
         self.fix_label = QLabel("Addon-Compatibility Fixes: ")
         self.fix_label.setStyleSheet('QLabel { font-size: 14px; font-weight: bold }')
         self.settings_layout.addRow(self.fix_label)
+        self.reload_theme = self.checkbox("theme_reload")
+        self.settings_layout.addRow("QT6 theme on-start reload fix", self.reload_theme)
         self.addon_more_overview_stats_check = self.checkbox("addon_more_overview_stats")
         self.settings_layout.addRow("More Overview Stats 21", self.addon_more_overview_stats_check)
+        self.addon_advanced_review_bottom_bar_check = self.checkbox("addon_advanced_review_bottom_bar")
+        self.settings_layout.addRow("Advanced Review Bottom Bar", self.addon_advanced_review_bottom_bar_check)
 
         self.tab_settings.setLayout(self.settings_layout)
 
@@ -523,21 +546,23 @@ class ConfigDialog(QDialog):
 
     def save(self) -> None:
         # Save settings and update config
-        global config
+        global config, color_mode
         config["font"] = self.interface_font.currentFont().family()
         config["font_size"] = self.font_size.value()
         config['addon_more_overview_stats'] = self.addon_more_overview_stats_check.isChecked()
+        config['addon_advanced_review_bottom_bar'] = self.addon_advanced_review_bottom_bar_check.isChecked()
+        config['theme_reload'] = self.reload_theme.isChecked()
         config["theme"] = theme
         write_config(config)
         config = get_config()
 
         # Write and update theme
+        color_mode = 2 if theme_manager.get_night_mode() else 1 # 1 = light and 2 = dark
         themes_parsed["colors"] = self.theme_colors
         write_theme(themes[theme], themes_parsed)
         update_theme()
 
-        # Reload view, show info and hide dialog
-        mw.reset()
+        # mw.reset()
         # ShowInfo for both new and legacy support
         showInfo(_("Changes will take effect when you restart Anki."))
         #showInfo(tr.preferences_changes_will_take_effect_when_you())
@@ -550,31 +575,55 @@ def check_legacy_colors() -> None:
         return False
     return True
 
+def refresh_all_windows() -> None:
+    # Redraw top toolbar
+    mw.toolbar.draw()
+    if attribute_exists(gui_hooks, "top_toolbar_did_init_links"):
+        gui_hooks.top_toolbar_did_init_links.append(lambda a,b: [redraw_toolbar_legacy(a,b), gui_hooks.top_toolbar_did_init_links.remove(print)])
+    
+    # Redraw main body
+    if mw.state == "review":
+        mw.reviewer._initWeb()
+        if mw.reviewer.state == "question":
+            mw.reviewer._showQuestion()
+        else:
+            mw.reviewer._showAnswer()
+    elif mw.state == "overview":
+        mw.overview.refresh()
+    elif mw.state == "deckBrowser":
+        mw.deckBrowser.show()
+
+    if attribute_exists(gui_hooks, "top_toolbar_did_init_links"):
+        gui_hooks.top_toolbar_did_init_links.remove(redraw_toolbar)
+
 def update_theme() -> None:
-        themes_parsed = get_theme(theme)
-        theme_colors = themes_parsed.get("colors")
-        # Apply theme on colors
-        ncolors = {}
-        # Legacy color check
-        legacy = check_legacy_colors()
-        for color_name in theme_colors:
-            c = theme_colors.get(color_name)
-            ncolors[color_name] = c[color_mode]
-            if legacy:
-               colors[f"day{c[3].replace('--','-')}"] = c[1]
-               colors[f"night{c[3].replace('--','-')}"] = c[2]
-               # Potentially add fusion fixes too?
-            else:
-                if getattr(colors, color_name, False):
-                    setattr(colors, color_name, (c[1], c[2]))
-        # Apply theme on palette
-        apply_theme(ncolors)
+    themes_parsed = get_theme(theme)
+    theme_colors = themes_parsed.get("colors")
+    # Apply theme on colors
+    ncolors = {}
+    # Legacy color check
+    logger.debug(dir(colors))
+    legacy = check_legacy_colors()
+    for color_name in theme_colors:
+        c = theme_colors.get(color_name)
+        ncolors[color_name] = c[color_mode]
+        if legacy:
+            colors[f"day{c[3].replace('--','-')}"] = c[1]
+            colors[f"night{c[3].replace('--','-')}"] = c[2]
+            # Potentially add fusion fixes too?
+        else:
+            logger.debug(getattr(colors, color_name, False))
+            if getattr(colors, color_name, False):
+                setattr(colors, color_name, (c[1], c[2]))
+    # Apply theme on palette
+    apply_theme(ncolors)
+    refresh_all_windows()
 
 def apply_theme(colors) -> None:
     # Load palette
     palette = QPalette()
     # QT mappings
-    logger.debug(QPalette.ColorRole.__dict__)
+    #logger.debug(QPalette.ColorRole.__dict__)
     color_map = {
         QPalette.ColorRole.Window: "WINDOW_BG",
         QPalette.ColorRole.WindowText: "TEXT_FG",
@@ -593,19 +642,15 @@ def apply_theme(colors) -> None:
     for color_role in color_map:
         palette.setColor(color_role, QColor(colors[color_map[color_role]]))
 
-    placeholder_text = QColor(colors["TEXT_FG"])
-    placeholder_text.setAlpha(200)
-    palette.setColor(QPalette.ColorRole.PlaceholderText, placeholder_text)
-
     highlight_bg = QColor(colors["HIGHLIGHT_BG"])
-    if theme_manager.night_mode:
-        highlight_bg.setAlpha(70)
-        palette.setColor(QPalette.ColorRole.BrightText, QColor(colors["TEXT_FG"]))
+    highlight_bg.setAlpha(64)
     palette.setColor(QPalette.ColorRole.Highlight, highlight_bg)
 
-    palette.setColor(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Text, QColor(colors["DISABLED"]))
-    palette.setColor(QPalette.ColorGroup.Disabled, QPalette.ColorRole.ButtonText, QColor(colors["DISABLED"]))
-    palette.setColor(QPalette.ColorGroup.Disabled, QPalette.ColorRole.HighlightedText, QColor(colors["DISABLED"]))
+    disabled_color = QColor(colors["DISABLED"])
+    palette.setColor(QPalette.ColorRole.PlaceholderText, disabled_color)
+    palette.setColor(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Text, disabled_color)
+    palette.setColor(QPalette.ColorGroup.Disabled, QPalette.ColorRole.ButtonText, disabled_color)
+    palette.setColor(QPalette.ColorGroup.Disabled, QPalette.ColorRole.HighlightedText, disabled_color)
 
     # Update palette
     mw.app.setPalette(palette)
@@ -620,17 +665,41 @@ def apply_theme(colors) -> None:
 def create_menu_action(parent: QWidget, dialog_class: QDialog, dialog_name: str) -> QAction:
     def open_dialog():
         dialog = dialog_class(mw)
-        return dialog.exec_()
+        return dialog.exec()
 
     action = QAction(dialog_name, parent)
-    qconnect(action.triggered, open_dialog)
+    #qconnect(action.triggered, open_dialog)
+    action.triggered.connect(open_dialog)
     return action
 
 # Load in the Anki-redesign menu
-if not hasattr(mw.form, 'anki_redesign'):
-    mw.form.anki_redesign = QMenu("&Anki-redesign", mw)
-    mw.form.menubar.insertMenu(mw.form.menuHelp.menuAction(), mw.form.anki_redesign)
+if not hasattr(mw, 'anki_redesign'):
+    mw.anki_redesign = QMenu("&Anki-redesign", mw)
+    mw.form.menubar.insertMenu(mw.form.menuHelp.menuAction(), mw.anki_redesign)
 
-    mw.form.anki_redesign.addAction(create_menu_action(mw.form.anki_redesign, ConfigDialog, "&Config"))
+    mw.anki_redesign.addAction(create_menu_action(mw.anki_redesign, ConfigDialog, "&Config"))
+    mw.anki_redesign.addSeparator()
+    mw.reset()
     update_theme()
-    #mw.form.anki_redesign.addSeparator()
+    mw.reset()
+
+    # Rereload view to fix theme change on startup
+    if 'Qt6' in QPalette.ColorRole.__module__:
+        logger.debug('QT6 DETECTED....')
+        config = get_config()
+        if config["theme_reload"]:
+            update_theme()
+
+def on_theme_did_change() -> None:
+    global color_mode
+    color_mode = 2 if theme_manager.get_night_mode() else 1 # 1 = light and 2 = dark
+    update_theme()
+    logger.debug("THEME CHANGEEEED")
+    refresh_all_windows()
+    mw.reset()
+    update_theme()
+
+    
+if attribute_exists(gui_hooks, "theme_did_change"):
+    gui_hooks.theme_did_change.append(on_theme_did_change)
+    logger.debug("YEP")

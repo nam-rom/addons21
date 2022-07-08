@@ -1,0 +1,1 @@
+{"name": "Pop-up Wikipedia Beta", "mod": 1578542303, "min_point_version": 0, "max_point_version": 0, "branch_index": 0, "disabled": true, "config": {"cache_expire_after": 720, "exclude_list": "", "popup_type": "mobile", "strip_css": true, "wiki_language": "vi", "wiki_popup_hotkey": "Ctrl+Shift+W"}, "conflicts": [], "update_enabled": true}

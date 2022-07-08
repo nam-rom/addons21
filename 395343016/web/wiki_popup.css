@@ -1,0 +1,41 @@
+.qtip {
+    max-width: 600px;
+    max-height: 600px;
+    font-family: "helvetica", sans-serif;
+    color: #141414;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.qtip-bootstrap .qtip-content {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+.qtip-content {
+    /*margin-top: 5px;*/
+    /*margin-left: 0;*/
+    /*margin-right: 0;*/
+    /*margin-bottom: 5px;*/
+    max-width: 600px;
+    max-height: 580px;
+    overflow-y: auto;
+    text-align: justify;
+}
+
+.wiki-result {
+    position: relative;
+    /*margin-top: 0.5em;*/
+    /*margin-bottom: 0.5em;*/
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+    padding-left: 0.5em !important;
+    padding-right: 0.5em !important;
+}
+
+.qtip img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+}

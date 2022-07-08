@@ -23,20 +23,22 @@ center {
 
 table {
   padding: 25px;
-  background: #68729455;
-  border-radius: 20px;
+  background: #494d64;
+  border-radius: 8px;
   overflow: hidden;
+  -webkit-box-shadow: 0 15px 25px rgba(0,0,0,.6);
+
 }
 
 .night-mode .zero-count {
   color: #737070
 }
-
 .heatmap {
+  background: #5A5D79;
   padding: 15px;
-  background: #68729455;
-  border-radius: 20px;
+  border-radius: 25px;
   overflow: hidden;
+  -webkit-box-shadow: 0 15px 25px #011627;
 }
 
 .rh-container {

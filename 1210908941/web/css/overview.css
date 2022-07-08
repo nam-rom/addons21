@@ -61,13 +61,13 @@ h3 {
 }
 body::before {
 
-    background-image: url("/_addons/1210908941/user_files/background/sunset.jpg"); 
+    background-image: url("/_addons/1210908941/user_files/background/retro.png"); 
     background-size: cover;  
     background-attachment: fixed!important; 
     background-repeat: no-repeat;
     background-position: center;
     background-color: !important; 
-    opacity: 1.0;
+    opacity: 0.96;
     content: "";
     top: 0;
     left: 0;
@@ -76,6 +76,6 @@ body::before {
     position: fixed;
     z-index: -99;
     will-change: transform;
-    transform: scale(1);
+    transform: scale(1.0);
     
 }
