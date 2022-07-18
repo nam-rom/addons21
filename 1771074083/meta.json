@@ -1,1 +1,1 @@
-{"name": "Review Heatmap", "homepage": "https://github.com/glutanimate/review-heatmap", "mod": 1656553427, "min_point_version": 49, "conflicts": ["review_heatmap", "1722241614", "723520343"], "max_point_version": 54, "branch_index": 1, "disabled": false, "update_enabled": true}
+{"name": "Review Heatmap", "conflicts": ["review_heatmap", "1722241614", "723520343"], "mod": 1656553427, "min_point_version": 49, "homepage": "https://github.com/glutanimate/review-heatmap", "max_point_version": 54, "branch_index": 1, "disabled": false}

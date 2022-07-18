@@ -6,6 +6,7 @@ tr {
 tr.deck td {
   border-bottom-color: #29292B;
   border-bottom: 0;
+  color:red;
 }
 
 tr.drag-hover td {
@@ -13,34 +14,103 @@ tr.drag-hover td {
 }
 
 .current {
-  background-color: #29292B00;
+  background-color: #29292B00; 
 }
-
 center {
+/* Deck , New , Learn , Due */
   padding-top: 15px;
   padding-bottom: 15px;
 }
-
 table {
   padding: 25px;
-  background: #494d64;
-  border-radius: 8px;
   overflow: hidden;
-  -webkit-box-shadow: 0 15px 25px rgba(0,0,0,.6);
-
+  min-width: 50vw;
+  background: rgba( 255, 255, 255, 0.8 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 12.5px );
+-webkit-backdrop-filter: blur( 12.5px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
-
+.nightMode table {
+  background: rgba( 34, 29, 29, 0.8 );
+}
+table:hover {
+backdrop-filter: blur( 1.5px );
+-webkit-backdrop-filter: blur( 1.5px );
+background: rgba( 241, 230, 230, 0.8 );
+}
+.nightMode table:hover {
+background: rgba( 95, 95, 95, 0.8 );
+}
 .night-mode .zero-count {
   color: #737070
 }
 .heatmap {
-  background: #5A5D79;
   padding: 15px;
-  border-radius: 25px;
   overflow: hidden;
-  -webkit-box-shadow: 0 15px 25px #011627;
-}
+  border-radius:10px;
+  filter: blur(2px);
+  background: rgba( 204, 204, 204, 0.9 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 12px );
+-webkit-backdrop-filter: blur( 12px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
 
+
+/* transition */
+  transform:
+    perspective(750px)
+    translate3d(0px, 0px, -250px)
+    rotateX(27deg)
+    scale(0.9, 0.9);
+  border-radius: 20px;
+  border: 1px solid #959595;
+  box-shadow: 0 70px 40px -20px rgba(0, 0, 0, 0.2);
+  transition: 0.4s ease-in-out transform;
+  filter: blur(0px);
+}
+.nightMode .heatmap {
+  background: rgba( 50, 50, 58, 0.8 );   
+}  
+.heatmap:hover {
+backdrop-filter: blur( 1.5px );
+-webkit-backdrop-filter:blur( 1.5px );
+background: rgba( 241, 230, 230, 0.8 );
+
+
+/* transition */
+ transform: translate3d(0px, 0px, -250px);
+}
+.nightMode .heatmap:hover {
+background: rgba( 100, 100, 100, 0.8 );
+}
 .rh-container {
   padding: 15px;
+}
+body {
+background: #e69094;
+background: linear-gradient(45deg, #8B5CF6, #EC4899);
+background-image: url("_bg1");  
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: 0 0;
+background-size: 100% 100%;
+}
+/* change text browser color */
+.new-count {
+    color: #8bd5ca;
+}
+.learn-count {
+    color: #ffa0ae;
+}
+.review-count {
+    color: #6ff353;
+}
+tr {
+    color:#687df1;
+}
+.nightMode tr {
+    color: #cbd3ff;
 }

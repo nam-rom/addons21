@@ -1,0 +1,72 @@
+tr {
+  border-color: #00000000;
+  border-spacing: 0;
+}
+
+tr.deck td {
+  border-bottom-color: #29292B;
+  border-bottom: 0;
+  color:red;
+}
+
+tr.drag-hover td {
+  border-bottom-color: #777;
+}
+
+.current {
+/*  background-color: #29292B00; */
+  background-color: white;
+  color:#ABA9A6;
+  border-radius: 10px !important;
+}
+.current:hover {	
+	cursor: pointer;
+	transform: scale(1.05);
+}
+center {
+/* Deck , New , Learn , Due */
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+table {
+  padding: 25px;
+  overflow: hidden;
+  min-width: 50vw;
+  background: rgba( 255, 255, 255, 0.8 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 12.5px );
+-webkit-backdrop-filter: blur( 12.5px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+table:before {
+	content: "hi";
+}
+.night-mode .zero-count {
+  color: #737070
+}
+.heatmap {
+  padding: 15px;
+  overflow: hidden;
+  border-radius:10px;
+  background: rgba( 204, 204, 204, 0.9 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 1px );
+-webkit-backdrop-filter: blur( 1px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.rh-container {
+  padding: 15px;
+}
+body {
+background: #e69094;
+background: linear-gradient(45deg, #8B5CF6, #EC4899);
+background-image: url("_my_file/deck_bg");  
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: 0 0;
+background-size: 100% 100%;
+}

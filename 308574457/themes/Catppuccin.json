@@ -189,7 +189,7 @@
     "SLIGHTLY_GREY_TEXT": [
       "Switch Text",
       "#333",
-      "#D8DEE9",
+      "#e2e9f7",
       "--slightly-grey-text"
     ],
     "SUSPENDED_BG": [
@@ -207,7 +207,7 @@
     "TEXT_FG": [
       "Text Foreground",
       "black",
-      "#d9e0ee",
+      "#e4ecfa",
       "--text-fg"
     ],
     "TOOLTIP_BG": [
