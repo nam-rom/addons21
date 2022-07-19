@@ -13,6 +13,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+import aqt
+
+anki_version = tuple(int(segment) for segment in aqt.appVersion.split("."))
+
+if anki_version < (2, 1, 45):
+    raise Exception("Minimum Anki version supported: 2.1.45")
+
 import base64
 import glob
 import hashlib
@@ -20,33 +27,24 @@ import inspect
 import json
 import os
 import os.path
-import random
+import platform
 import re
-import string
 import time
 import unicodedata
-
-from PyQt5 import QtCore
-from PyQt5.QtCore import QTimer
-from PyQt5.QtWidgets import QMessageBox
 
 import anki
 import anki.exporting
 import anki.storage
-import aqt
 from anki.cards import Card
 from anki.consts import MODEL_CLOZE
-
 from anki.exporting import AnkiPackageExporter
 from anki.importing import AnkiPackageImporter
 from anki.notes import Note
-from anki.utils import joinFields, intTime, guid64, fieldChecksum
+from anki.errors import NotFoundError
+from aqt.qt import Qt, QTimer, QMessageBox, QCheckBox
 
-try:
-    from anki.rsbackend import NotFoundError
-except:
-    NotFoundError = Exception
-
+from .web import format_exception_reply, format_success_reply
+from .edit import Edit
 from . import web, util
 
 
@@ -55,18 +53,21 @@ from . import web, util
 #
 
 class AnkiConnect:
-    _anki21_version = int(aqt.appVersion.split('.')[-1])
-
     def __init__(self):
         self.log = None
+        self.timer = None
+        self.server = web.WebServer(self.handler)
+
+    def initLogging(self):
         logPath = util.setting('apiLogPath')
         if logPath is not None:
             self.log = open(logPath, 'w')
 
+    def startWebServer(self):
         try:
-            self.server = web.WebServer(self.handler)
             self.server.listen()
 
+            # only keep reference to prevent garbage collection
             self.timer = QTimer()
             self.timer.timeout.connect(self.advance)
             self.timer.start(util.setting('apiPollInterval'))
@@ -78,11 +79,7 @@ class AnkiConnect:
             )
 
     def save_model(self, models, ankiModel):
-        if self._anki21_version < 45:
-            models.save(ankiModel, True)
-            models.flush()
-        else:
-            models.update_dict(ankiModel)
+        models.update_dict(ankiModel)
 
     def logEvent(self, name, data):
         if self.log is not None:
@@ -103,7 +100,6 @@ class AnkiConnect:
         version = request.get('version', 4)
         params = request.get('params', {})
         key = request.get('key')
-        reply = {'result': None, 'error': None}
 
         try:
             if key != util.setting('apiKey') and name != 'requestPermission':
@@ -130,14 +126,12 @@ class AnkiConnect:
 
             if method is None:
                 raise Exception('unsupported action')
-            else:
-                reply['result'] = methodInst(**params)
 
-            if version <= 4:
-                reply = reply['result']
+            api_return_value = methodInst(**params)
+            reply = format_success_reply(version, api_return_value)
 
         except Exception as e:
-            reply['error'] = str(e)
+            reply = format_exception_reply(version, e)
 
         self.logEvent('reply', reply)
         return reply
@@ -350,6 +344,24 @@ class AnkiConnect:
         except NotFoundError:
             raise NotFoundError('Note was not found: {}'.format(note_id))
 
+    def deckStatsToJson(self, due_tree):
+        deckStats = {'deck_id': due_tree.deck_id,
+                     'name': due_tree.name,
+                     'new_count': due_tree.new_count,
+                     'learn_count': due_tree.learn_count,
+                     'review_count': due_tree.review_count}
+        if anki_version > (2, 1, 46):
+            # total_in_deck is not supported on lower Anki versions
+            deckStats['total_in_deck'] = due_tree.total_in_deck
+        return deckStats
+
+    def collectDeckTreeChildren(self, parent_node):
+        allNodes = {parent_node.deck_id: parent_node}
+        for child in parent_node.children:
+            for deckId, childNode in self.collectDeckTreeChildren(child).items():
+                allNodes[deckId] = childNode
+        return allNodes
+
     #
     # Miscellaneous
     #
@@ -358,53 +370,56 @@ class AnkiConnect:
     def version(self):
         return util.setting('apiVersion')
 
+
     @util.api()
     def requestPermission(self, origin, allowed):
+        results = {
+                "permission": "denied",
+        }
+
         if allowed:
-            return {
-                "permission": "granted",
-                "requireApikey": bool(util.setting('apiKey')),
-                "version": util.setting('apiVersion')
-            }
-
-        if origin in util.setting('ignoreOriginList') :
-            return {
-                "permission": "denied",
-            }
-
-        msg = QMessageBox(None)
-        msg.setWindowTitle("A website want to access to Anki")
-        msg.setText(origin + " request permission to use Anki through AnkiConnect.\nDo you want to give it access ?")
-        msg.setInformativeText("By giving permission, the website will be able to do actions on anki, including destructives actions like deck deletion.")
-        msg.setWindowIcon(self.window().windowIcon())
-        msg.setIcon(QMessageBox.Question)
-        msg.setStandardButtons(QMessageBox.Yes|QMessageBox.Ignore|QMessageBox.No)
-        msg.setDefaultButton(QMessageBox.No)
-        msg.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
-        pressedButton = msg.exec_()
-
-        if pressedButton == QMessageBox.Yes:
-            config = aqt.mw.addonManager.getConfig(__name__)
-            config["webCorsOriginList"] = util.setting('webCorsOriginList')
-            config["webCorsOriginList"].append(origin)
-            aqt.mw.addonManager.writeConfig(__name__, config)
-
-        if pressedButton == QMessageBox.Ignore:
-            config = aqt.mw.addonManager.getConfig(__name__)
-            config["ignoreOriginList"] = util.setting('ignoreOriginList')
-            config["ignoreOriginList"].append(origin)
-            aqt.mw.addonManager.writeConfig(__name__, config)
-
-        if pressedButton == QMessageBox.Yes:
             results = {
-                "permission": "granted",
-                "requireApikey": bool(util.setting('apiKey')),
-                "version": util.setting('apiVersion')
+                    "permission": "granted",
+                    "requireApikey": bool(util.setting('apiKey')),
+                    "version": util.setting('apiVersion')
             }
-        else :
-            results = {
-                "permission": "denied",
-            }
+
+        elif origin in util.setting('ignoreOriginList'):
+            pass  # defaults to denied
+
+        else:  # prompt the user
+            msg = QMessageBox(None)
+            msg.setWindowTitle("A website wants to access to Anki")
+            msg.setText('"{}" requests permission to use Anki through AnkiConnect. Do you want to give it access?'.format(origin))
+            msg.setInformativeText("By granting permission, you'll allow the website to modify your collection on your behalf, including the execution of destructive actions such as deck deletion.")
+            msg.setWindowIcon(self.window().windowIcon())
+            msg.setIcon(QMessageBox.Question)
+            msg.setStandardButtons(QMessageBox.Yes|QMessageBox.No)
+            msg.setDefaultButton(QMessageBox.No)
+            msg.setCheckBox(QCheckBox(text='Ignore further requests from "{}"'.format(origin), parent=msg))
+            msg.setWindowFlags(Qt.WindowStaysOnTopHint)
+            pressedButton = msg.exec_()
+
+            if pressedButton == QMessageBox.Yes:
+                config = aqt.mw.addonManager.getConfig(__name__)
+                config["webCorsOriginList"] = util.setting('webCorsOriginList')
+                config["webCorsOriginList"].append(origin)
+                aqt.mw.addonManager.writeConfig(__name__, config)
+                results = {
+                    "permission": "granted",
+                    "requireApikey": bool(util.setting('apiKey')),
+                    "version": util.setting('apiVersion')
+                }
+
+            # if the origin isn't an empty string, the user clicks "No", and the ignore box is checked
+            elif origin and pressedButton == QMessageBox.No and msg.checkBox().isChecked():
+                config = aqt.mw.addonManager.getConfig(__name__)
+                config["ignoreOriginList"] = util.setting('ignoreOriginList')
+                config["ignoreOriginList"].append(origin)
+                aqt.mw.addonManager.writeConfig(__name__, config)
+
+            # else defaults to denied
+
         return results
 
 
@@ -531,12 +546,21 @@ class AnkiConnect:
 
     @util.api()
     def deleteDecks(self, decks, cardsToo=False):
+        if not cardsToo:
+            # since f592672fa952260655881a75a2e3c921b2e23857 (2.1.28)
+            # (see anki$ git log "-Gassert cardsToo")
+            # you can't delete decks without deleting cards as well.
+            # however, since 62c23c6816adf912776b9378c008a52bb50b2e8d (2.1.45)
+            # passing cardsToo to `rem` (long deprecated) won't raise an error!
+            # this is dangerous, so let's raise our own exception
+            raise Exception("Since Anki 2.1.28 it's not possible "
+                            "to delete decks without deleting cards as well")
         try:
             self.startEditing()
             decks = filter(lambda d: d in self.deckNames(), decks)
             for deck in decks:
                 did = self.decks().id(deck)
-                self.decks().rem(did, cardsToo)
+                self.decks().rem(did, cardsToo=cardsToo)
         finally:
             self.stopEditing()
 
@@ -609,13 +633,23 @@ class AnkiConnect:
         collection.decks.remConf(configId)
         return True
 
+    @util.api()
+    def getDeckStats(self, decks):
+        collection = self.collection()
+        scheduler = self.scheduler()
+        responseDict = {}
+        deckIds = list(map(lambda d: collection.decks.id(d), decks))
+
+        allDeckNodes = self.collectDeckTreeChildren(scheduler.deck_due_tree())
+        for deckId, deckNode in allDeckNodes.items():
+            if deckId in deckIds:
+                responseDict[deckId] = self.deckStatsToJson(deckNode)
+        return responseDict
 
     @util.api()
     def storeMediaFile(self, filename, data=None, path=None, url=None, skipHash=None, deleteExisting=True):
         if not (data or path or url):
             raise Exception('You must provide a "data", "path", or "url" field.')
-        if deleteExisting:
-            self.deleteMediaFile(filename)
         if data:
             mediaData = base64.b64decode(data)
         elif path:
@@ -633,6 +667,8 @@ class AnkiConnect:
 
         if skip:
             return None
+        if deleteExisting:
+            self.deleteMediaFile(filename)
         return self.media().writeData(filename, mediaData)
 
 
@@ -709,7 +745,8 @@ class AnkiConnect:
                                                         data=media.get('data'),
                                                         path=media.get('path'),
                                                         url=media.get('url'),
-                                                        skipHash=media.get('skipHash'))
+                                                        skipHash=media.get('skipHash'),
+                                                        deleteExisting=media.get('deleteExisting'))
 
                     if mediaFilename is not None:
                         for field in media['fields']:
@@ -832,6 +869,38 @@ class AnkiConnect:
             ankiCard.flush()
 
         return couldSetEaseFactors
+
+    @util.api()
+    def setSpecificValueOfCard(self, card, keys,
+                               newValues, warning_check=False):
+        if isinstance(card, list):
+            print("card has to be int, not list")
+            return False
+
+        if not isinstance(keys, list) or not isinstance(newValues, list):
+            print("keys and newValues have to be lists.")
+            return False
+
+        if len(newValues) != len(keys):
+            print("Invalid list lengths.")
+            return False
+
+        for key in keys:
+            if key in ["did", "id", "ivl", "lapses", "left", "mod", "nid",
+                       "odid", "odue", "ord", "queue", "reps", "type", "usn"]:
+                if warning_check is False:
+                    return False
+
+        result = []
+        try:
+            ankiCard = self.getCard(card)
+            for i, key in enumerate(keys):
+                setattr(ankiCard, key, newValues[i])
+            ankiCard.flush()
+            result.append(True)
+        except Exception as e:
+            result.append([False, str(e)])
+        return result
 
 
     @util.api()
@@ -1095,7 +1164,7 @@ class AnkiConnect:
             model = self.collection().models.byName(modelName)
             if model is None:
                 raise Exception('model was not found: {}'.format(modelName))
-            ankiModel = [model]
+            ankiModel = [modelName]
         updatedModels = 0
         for model in ankiModel:
             model = self.collection().models.byName(model)
@@ -1245,45 +1314,6 @@ class AnkiConnect:
 
 
     @util.api()
-    def updateCompleteDeck(self, data):
-        self.startEditing()
-        did = self.decks().id(data['deck'])
-        self.decks().flush()
-        model_manager = self.collection().models
-        for _, card in data['cards'].items():
-            self.database().execute(
-                'replace into cards (id, nid, did, ord, type, queue, due, ivl, factor, reps, lapses, left, '
-                'mod, usn, odue, odid, flags, data) '
-                'values (' + '?,' * (12 + 6 - 1) + '?)',
-                card['id'], card['nid'], did, card['ord'], card['type'], card['queue'], card['due'],
-                card['ivl'], card['factor'], card['reps'], card['lapses'], card['left'],
-                intTime(), -1, 0, 0, 0, 0
-            )
-            note = data['notes'][str(card['nid'])]
-            tags = self.collection().tags.join(self.collection().tags.canonify(note['tags']))
-            self.database().execute(
-                'replace into notes(id, mid, tags, flds,'
-                'guid, mod, usn, flags, data, sfld, csum) values (' + '?,' * (4 + 7 - 1) + '?)',
-                note['id'], note['mid'], tags, joinFields(note['fields']),
-                guid64(), intTime(), -1, 0, 0, '', fieldChecksum(note['fields'][0])
-            )
-            model = data['models'][str(note['mid'])]
-            if not model_manager.get(model['id']):
-                model_o = model_manager.new(model['name'])
-                for field_name in model['fields']:
-                    field = model_manager.newField(field_name)
-                    model_manager.addField(model_o, field)
-                for template_name in model['templateNames']:
-                    template = model_manager.newTemplate(template_name)
-                    model_manager.addTemplate(model_o, template)
-                model_o['id'] = model['id']
-                model_manager.update(model_o)
-                model_manager.flush()
-
-        self.stopEditing()
-
-
-    @util.api()
     def insertReviews(self, reviews):
         if len(reviews) > 0:
             sql = 'insert into revlog(id,cid,usn,ease,ivl,lastIvl,factor,time,type) values '
@@ -1359,6 +1389,12 @@ class AnkiConnect:
 
         return self.findCards(query)
 
+
+    @util.api()
+    def guiEditNote(self, note):
+        Edit.open_dialog_and_show_note_with_id(note)
+
+
     @util.api()
     def guiSelectedNotes(self):
         (creator, instance) = aqt.dialogs._dialogs['Browser']
@@ -1385,91 +1421,6 @@ class AnkiConnect:
             collection.models.setCurrent(model)
             collection.models.update(model)
 
-        closeAfterAdding = False
-        if note is not None and 'options' in note:
-            if 'closeAfterAdding' in note['options']:
-                closeAfterAdding = note['options']['closeAfterAdding']
-                if type(closeAfterAdding) is not bool:
-                    raise Exception('option parameter \'closeAfterAdding\' must be boolean')
-
-        addCards = None
-
-        if closeAfterAdding:
-            randomString = ''.join(random.choice(string.ascii_letters) for _ in range(10))
-            windowName = 'AddCardsAndClose' + randomString
-
-            class AddCardsAndClose(aqt.addcards.AddCards):
-
-                def __init__(self, mw):
-                    # the window must only reset if
-                    # * function `onModelChange` has been called prior
-                    # * window was newly opened
-
-                    self.modelHasChanged = True
-                    super().__init__(mw)
-
-                    self.addButton.setText('Add and Close')
-                    self.addButton.setShortcut(aqt.qt.QKeySequence('Ctrl+Return'))
-
-                def _addCards(self):
-                    super()._addCards()
-
-                    # if adding was successful it must mean it was added to the history of the window
-                    if len(self.history):
-                        self.reject()
-
-                def onModelChange(self):
-                    if self.isActiveWindow():
-                        super().onModelChange()
-                        self.modelHasChanged = True
-
-                def onReset(self, model=None, keep=False):
-                    if self.isActiveWindow() or self.modelHasChanged:
-                        super().onReset(model, keep)
-                        self.modelHasChanged = False
-
-                    else:
-                        # modelchoosers text is changed by a reset hook
-                        # therefore we need to change it back manually
-                        self.modelChooser.models.setText(self.editor.note.model()['name'])
-                        self.modelHasChanged = False
-
-                def _reject(self):
-                    savedMarkClosed = aqt.dialogs.markClosed
-                    aqt.dialogs.markClosed = lambda _: savedMarkClosed(windowName)
-                    super()._reject()
-                    aqt.dialogs.markClosed = savedMarkClosed
-
-            aqt.dialogs._dialogs[windowName] = [AddCardsAndClose, None]
-            addCards = aqt.dialogs.open(windowName, self.window())
-
-            if savedMid:
-                deck['mid'] = savedMid
-
-            editor = addCards.editor
-            ankiNote = editor.note
-
-            if 'fields' in note:
-                for name, value in note['fields'].items():
-                    if name in ankiNote:
-                        ankiNote[name] = value
-
-            self.addMediaFromNote(ankiNote, note)
-            editor.loadNote()
-
-            if 'tags' in note:
-                ankiNote.tags = note['tags']
-                editor.updateTags()
-
-            # if Anki does not Focus, the window will not notice that the
-            # fields are actually filled
-            aqt.dialogs.open(windowName, self.window())
-            addCards.setAndFocusNote(editor.note)
-
-            return ankiNote.id
-
-        elif note is not None:
-            collection = self.collection()
             ankiNote = anki.notes.Note(collection, model)
 
             # fill out card beforehand, so we can be sure of the note id
@@ -1491,9 +1442,7 @@ class AnkiConnect:
                 if savedMid:
                     deck['mid'] = savedMid
 
-                addCards.editor.note = ankiNote
-                addCards.editor.loadNote()
-                addCards.editor.updateTags()
+                addCards.editor.set_note(ankiNote)
 
                 addCards.activateWindow()
 
@@ -1692,8 +1641,48 @@ class AnkiConnect:
 
         return False
 
+
+    @util.api()
+    def apiReflect(self, scopes=None, actions=None):
+        if not isinstance(scopes, list):
+            raise Exception('scopes has invalid value')
+        if not (actions is None or isinstance(actions, list)):
+            raise Exception('actions has invalid value')
+
+        cls = type(self)
+        scopes2 = []
+        result = {'scopes': scopes2}
+
+        if 'actions' in scopes:
+            if actions is None:
+                actions = dir(cls)
+
+            methodNames = []
+            for methodName in actions:
+                if not isinstance(methodName, str):
+                    pass
+                method = getattr(cls, methodName, None)
+                if method is not None and getattr(method, 'api', False):
+                    methodNames.append(methodName)
+
+            scopes2.append('actions')
+            result['actions'] = methodNames
+
+        return result
+
+
 #
 # Entry
 #
 
-ac = AnkiConnect()
+# when run inside Anki, `__name__` would be either numeric,
+# or, if installed via `link.sh`, `AnkiConnectDev`
+if __name__ != "plugin":
+    if platform.system() == "Windows" and anki_version == (2, 1, 50):
+        util.patch_anki_2_1_50_having_null_stdout_on_windows()
+
+    Edit.register_with_anki()
+
+    ac = AnkiConnect()
+    ac.initLogging()
+    ac.startWebServer()

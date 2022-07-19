@@ -14,6 +14,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import sys
 
 import anki
 import anki.sync
@@ -43,10 +44,9 @@ def download(url):
 
 def api(*versions):
     def decorator(func):
-        method = lambda *args, **kwargs: func(*args, **kwargs)
-        setattr(method, 'versions', versions)
-        setattr(method, 'api', True)
-        return method
+        setattr(func, 'versions', versions)
+        setattr(func, 'api', True)
+        return func
 
     return decorator
 
@@ -65,22 +65,29 @@ def cardAnswer(card):
     return card.answer()
 
 
-def setting(key):
-    defaults = {
-        'apiKey': None,
-        'apiLogPath': None,
-        'apiPollInterval': 25,
-        'apiVersion': 6,
-        'webBacklog': 5,
-        'webBindAddress': os.getenv('ANKICONNECT_BIND_ADDRESS', '127.0.0.1'),
-        'webBindPort': 8765,
-        'webCorsOrigin': os.getenv('ANKICONNECT_CORS_ORIGIN', None),
-        'webCorsOriginList': ['http://localhost'],
-        'ignoreOriginList': [],
-        'webTimeout': 10000,
-    }
+DEFAULT_CONFIG = {
+    'apiKey': None,
+    'apiLogPath': None,
+    'apiPollInterval': 25,
+    'apiVersion': 6,
+    'webBacklog': 5,
+    'webBindAddress': os.getenv('ANKICONNECT_BIND_ADDRESS', '127.0.0.1'),
+    'webBindPort': 8765,
+    'webCorsOrigin': os.getenv('ANKICONNECT_CORS_ORIGIN', None),
+    'webCorsOriginList': ['http://localhost'],
+    'ignoreOriginList': [],
+    'webTimeout': 10000,
+}
 
+def setting(key):
     try:
-        return aqt.mw.addonManager.getConfig(__name__).get(key, defaults[key])
+        return aqt.mw.addonManager.getConfig(__name__).get(key, DEFAULT_CONFIG[key])
     except:
         raise Exception('setting {} not found'.format(key))
+
+
+# see https://github.com/FooSoft/anki-connect/issues/308
+# fixed in https://github.com/ankitects/anki/commit/0b2a226d
+def patch_anki_2_1_50_having_null_stdout_on_windows():
+    if sys.stdout is None:
+        sys.stdout = open(os.devnull, "w", encoding="utf8")

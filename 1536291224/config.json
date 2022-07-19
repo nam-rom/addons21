@@ -1,0 +1,18 @@
+{
+	"Source Field": "",
+	"Target Field": "",
+	"Source Language": "",
+	"Target Language": "",
+	"Target Romanization Field": "",
+	"Romanization Field": "",
+	"Definitions Field": "",
+	"Examples Field": "",
+	"Alternative Translations Field": "",
+	"Strip HTML": true,
+	"Overwrite": false,
+	"Get Translated Definitions": false,
+	"Get Translated Examples": false,
+	"Show Extra Options": true,
+	"Show Extra Fields": true,
+	"Alternative Translations Meanings Visibility": "show"
+}
