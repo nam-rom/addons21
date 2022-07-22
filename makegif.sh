@@ -2,6 +2,7 @@
 # Source https://youtu.be/V59q5DC9y6A
 # convert a video into a gif animation
 
+# Simple command "ffmpeg -ss 01 -t 14 -i input.mp4 -vf "fps=10,scale=1024:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output.gif"
 # script usage
 usage()
 {
