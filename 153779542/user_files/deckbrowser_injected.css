@@ -33,15 +33,15 @@ border-radius: 10px;
 border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 .nightMode table {
-  background: rgba( 34, 29, 29, 0.8 );
+  background: rgb(48, 45, 65, 0.8 );
 }
 table:hover {
 backdrop-filter: blur( 1.5px );
 -webkit-backdrop-filter: blur( 1.5px );
-background: rgba( 241, 230, 230, 0.8 );
+background: rgba( 241, 230, 230, 0.9 );
 }
 .nightMode table:hover {
-background: rgba( 95, 95, 95, 0.8 );
+background: rgb(48, 45, 65, 0.9 );
 }
 .night-mode .zero-count {
   color: #737070
@@ -92,7 +92,7 @@ background: rgba( 100, 100, 100, 0.8 );
 body {
 background: #e69094;
 background: linear-gradient(45deg, #8B5CF6, #EC4899);
-background-image: url("_bg1");  
+background-image: url("_bg4");  
 background-repeat: no-repeat;
 background-attachment: fixed;
 background-position: 0 0;

@@ -1,30 +1,31 @@
+/* night-mode-specific colours */
 .review-count {
-  color: var(--review-count);
+  color: #0a0;
 }
 
 .new-count {
-  color: var(--new-count);
+  color: #00a;
 }
 
 .learn-count {
-  color: var(--learn-count);
+  color: #C35617;
 }
 
 .zero-count {
-  color: var(--zero-count);
+  color: #ddd;
 }
 
 .nightMode .review-count {
-  color: var(--review-count);
+  color: #5CcC00;
 }
 .nightMode .new-count {
-  color: var(--new-count);
+  color: #77ccff;
 }
 .nightMode .learn-count {
-  color: var(--learn-count);
+  color: #FF935B;
 }
 .nightMode .zero-count {
-  color: var(--zero-count);
+  color: #444;
 }
 
 /* Copyright: Ankitects Pty Ltd and contributors
@@ -78,7 +79,7 @@ button {
 }
 
 #outer {
-  border-top: 1px solid var(--border);
+  border-top: 1px solid #aaa;
 }
 
 #innertable {
@@ -86,8 +87,25 @@ button {
 }
 
 .nightMode #outer {
-  border-top-color: var(--faint-border);
+  border-top-color: #29292B;
 }
 body::before {
-background-image:none!important;
+
+    background-image: url("/_addons/zCustomback-gui/user_files/background/AnKing.png"); 
+    background-size: cover;  
+    background-attachment: fixed!important; 
+    background-repeat: no-repeat;
+    background-position: bottom;;
+    background-color: !important; 
+    opacity: 0.0;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: -99;
+    will-change: transform;
+    transform: scale(1.0);
+    
 }

@@ -1,9 +1,10 @@
+/* night-mode-specific colours */
 /* Copyright: Ankitects Pty Ltd and contributors
  * License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html */
 #header {
   padding: 3px;
   font-weight: bold;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid #aaa;
 }
 
 .tdcenter {
@@ -25,7 +26,7 @@ body {
   padding-right: 12px;
   padding-left: 12px;
   text-decoration: none;
-  color: var(--text-fg);
+  color: black;
 }
 
 .hitem:hover {
@@ -36,12 +37,15 @@ body {
   outline: 0;
 }
 
+.nightMode .hitem {
+  color: white;
+}
 .nightMode #header {
-  border-bottom-color: var(--faint-border);
+  border-bottom-color: #29292B;
 }
 
 .isMac.nightMode #header {
-  border-bottom-color: var(--frame-bg);
+  border-bottom-color: #3a3a3a;
 }
 
 @keyframes spin {
@@ -67,12 +71,23 @@ body {
   margin-bottom: -3px;
   visibility: hidden;
 }
+body::before {
 
-.normal-sync {
-  color: var(--new-count);
+    background-image: url("/_addons/zCustomback-gui/user_files/background/AnKing.png"); 
+    background-size: cover;  
+    background-attachment: fixed!important; 
+    background-repeat: no-repeat;
+    background-position: top;
+    background-color: !important; 
+    opacity: 0.22;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: -99;
+    will-change: transform;
+    transform: scale(1.0);
+    
 }
-
-.full-sync {
-  color: var(--learn-count);
-}
-/*AnKing edits*/  

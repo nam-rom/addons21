@@ -1,0 +1,78 @@
+<body>
+    <div class="anki-container">
+        <div id="playBtn">
+            <div id="myAudio">{{Sound}}</div>
+        </div>
+
+        <div class="phonetic">{{Phonetic}}</div>
+        <div class="type">{{WordType}}</div>
+
+        <button onclick="ShowHide('example')" class="btn btn-info">Examples</button>
+        <div id="example" style="display: none">
+            <div class="example">{{cloze:Example}}</div>
+            <button onclick="ShowHide('word')" class="btn btn-info">Show More Hints</button>
+            <div id="word" style="display: none">
+                <div id="dropped-vowel" class="word-hint">{{Word}}</div>
+                <div class="image">{{Image}}</div>
+            </div>
+        </div>
+
+        <div class="word-type">{{type:Word}}</div>
+    </div>
+
+    <script language="JavaScript">
+
+        function playSounds() {
+            var myAudio = document.getElementById('myAudio');
+            var audios = document.getElementsByTagName('audio');
+            sequencePlaySounds(audios, 0);
+        }
+
+        // Play sounds on page loaded
+        document.onload = playSounds();
+
+        // Recursive to play sounds
+        function sequencePlaySounds(sounds, idx) {
+
+            // Finish condition.1
+            if (idx >= sounds.length)
+                return;
+
+            let next = function () {
+                sequencePlaySounds(sounds, idx + 1)
+            };
+
+            sounds[idx].onended = next;
+            if (sounds[idx].get_attribute('src').includes('http')) {
+                sounds[idx].play();
+            }
+        }
+
+        // Show/hide elements
+        function ShowHide(divId) {
+            if (document.getElementById(divId).style.display === 'none') {
+                document.getElementById(divId).style.display = 'block';
+            } else {
+                document.getElementById(divId).style.display = 'none';
+            }
+        }
+
+        // Replace vowel
+        var str = document.getElementById("dropped-vowel").innerHTML;
+        letters = '';
+        for (var i = 0, len = str.length; i < len; i++) {
+            if (str[i].match(/[AEOUIaeoui]/i)) {
+                letters += '<span class="hint">' + '_' + '</span>';
+            } else {
+                letters += str[i];
+            }
+        }
+        document.getElementById("dropped-vowel").innerHTML = letters;
+
+        // Show/hide play sounds element
+        var playBtn = document.getElementById('playBtn');
+        if (document.getElementById('myAudio').textContent === '') {
+            playBtn.parentNode.removeChild(playBtn);
+        }
+    </script>
+</body>

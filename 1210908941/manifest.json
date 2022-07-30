@@ -1,12 +1,10 @@
 {
-    "name": "Custom Background and gear icon",
-    "package": "custom_background_and_gear_icon",
-    "ankiweb_id": "1210908941",
-    "author": "",
-    "version": "3.4",
-    "homepage": "",
-    "conflicts": [
-        "custom_background_and_gear_icon"
-    ],
-    "mod": 1649519880
+  "min_point_version": 22,
+  "name": "Custom background 3.0",
+  "package": "1210908941",
+  "mod": 1659016335,
+  "ankiweb_id": "1210908941",
+  "version": "3.4",
+  "author": "The AnKing",
+  "conflicts": []
 }

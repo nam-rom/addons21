@@ -6,12 +6,12 @@ import os
 import random
 
 from aqt.editor import pics
-from aqt.gui_hooks import state_did_change
+from aqt import gui_hooks
 
 from .config import addon_path, addonfoldername, gc
 
 
-def set_bg_img(filecontent, imgname, location, review=False):
+def add_bg_img(filecontent, imgname, location, review=False):
     #add background image for normal and nightmode
     img_web_rel_path  = f"/_addons/{addonfoldername}/user_files/background/{imgname}"
     old = "/*AnKing edits*/"
@@ -59,8 +59,8 @@ def set_bg_img(filecontent, imgname, location, review=False):
     """
 
     new = f"""{bracket_start}\n{background}\n{bracket_close}"""   
-    result = filecontent.replace(old, new) 
-    return result
+    cont = filecontent.replace(old, new) 
+    return cont
 
 def get_bg_img():
     bg_abs_path = os.path.join(addon_path, "user_files", "background")
@@ -75,33 +75,38 @@ def get_bg_img():
         return ""
 
 
-img_name = get_bg_img()
+imgname = get_bg_img()
 def reset_image(new_state, old_state):
-    global img_name
+    global imgname
     if new_state == "deckBrowser":
-        img_name = get_bg_img()
-state_did_change.append(reset_image)
+        imgname = get_bg_img()
+gui_hooks.state_did_change.append(reset_image)
 
 def adjust_deckbrowser_css22(filecontent):
-    result = set_bg_img(filecontent, img_name, "body")
+    cont = add_bg_img(filecontent, imgname, "body")
     #do not invert gears if using personal image
     if gc("Image name for gear") != "gears.svg":
         old_gears = "filter: invert(180);"
         new_gears = "/* filter: invert(180); */"
-        result = result.replace(old_gears, new_gears)
-    return result
+        cont = cont.replace(old_gears, new_gears)
+    return cont
 
 def adjust_toolbar_css22(filecontent):
-    return set_bg_img(filecontent, img_name, "top")
+    cont = add_bg_img(filecontent, imgname, "top")
+    return cont
 
 def adjust_bottomtoolbar_css22(filecontent):  
-    return set_bg_img(filecontent, img_name, "bottom")
+    cont = add_bg_img(filecontent, imgname, "bottom")
+    return cont
 
 def adjust_overview_css22(filecontent):  
-    return set_bg_img(filecontent, img_name, "body")
+    cont = add_bg_img(filecontent, imgname, "body")
+    return cont
 
 def adjust_reviewer_css22(filecontent): 
-    return set_bg_img(filecontent, img_name, "body", True)
+    cont = add_bg_img(filecontent, imgname, "body", True)
+    return cont    
 
 def adjust_reviewerbottom_css22(filecontent):  
-    return set_bg_img(filecontent, img_name, "bottom", True)
+    cont = add_bg_img(filecontent, imgname, "bottom", True)
+    return cont       
