@@ -50,11 +50,41 @@ background: rgb(48, 45, 65, 0.9 );
   padding: 15px;
   overflow: hidden;
   border-radius:10px;
+  filter: blur(2px);
+  background: rgba( 204, 204, 204, 0.9 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 12px );
+-webkit-backdrop-filter: blur( 12px );
+border: 1px solid rgba( 255, 255, 255, 0.18 );
 
 
+/* transition */
+  transform:
+    perspective(750px)
+    translate3d(0px, 0px, -250px)
+    rotateX(27deg)
+    scale(0.9, 0.9);
+  border-radius: 20px;
+  border: 1px solid #959595;
+  box-shadow: 0 70px 40px -20px rgba(0, 0, 0, 0.2);
+  transition: 0.4s ease-in-out transform;
+  filter: blur(0px);
 }
+.nightMode .heatmap {
+  background: rgba( 50, 50, 58, 0.8 );   
+}  
+.heatmap:hover {
+backdrop-filter: blur( 1.5px );
+-webkit-backdrop-filter:blur( 1.5px );
+background: rgba( 241, 230, 230, 0.8 );
 
 
+/* transition */
+ transform: translate3d(0px, 0px, -250px);
+}
+.nightMode .heatmap:hover {
+background: rgba( 100, 100, 100, 0.8 );
+}
 .rh-container {
   padding: 15px;
 }

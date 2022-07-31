@@ -1,1 +1,1 @@
-{"name": "Change Interface Font", "mod": 1630024586, "min_point_version": 0, "max_point_version": 46, "branch_index": 0, "config": {"Interface Font": "Comic Sans MS", "Font Size": 12}, "disabled": false, "conflicts": [], "update_enabled": true}
+{"name": "Change Interface Font", "mod": 1630024586, "min_point_version": 0, "max_point_version": 46, "branch_index": 0, "config": {"Interface Font": "Comic Sans MS", "Font Size": 12}, "disabled": true, "conflicts": [], "update_enabled": true}
